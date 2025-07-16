@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "./MyComponent/Header";
 import Footer from "./MyComponent/Footer";
 import Todos from "./MyComponent/Todos";
+import AddTodo from "./MyComponent/AddTodo";
 import { useState } from 'react';
 
 import PropTypes from 'prop-types'
@@ -42,6 +43,7 @@ function App() {
   return (
     <>
       <Header title="My todos list" searchBar={true} />
+      <AddTodo />
       <Todos todos={todos} onDelete={onDelete} />
       <Footer />
     </>
