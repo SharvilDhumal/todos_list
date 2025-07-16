@@ -1,45 +1,50 @@
-import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from "./MyComponent/Header";
+import Footer from "./MyComponent/Footer";
+import Todos from "./MyComponent/Todos";
+import { useState } from 'react';
+
+import PropTypes from 'prop-types'
 
 function App() {
+  const onDelete = (todo) => {
+    console.log("I am onDelete of todo", todo);
+    // Deleting this way in  react does not work
+    // let index = todos.indexOf(todo);
+    // todos.splice(index, 1);
+    setTodos(todos.filter((e) => {
+      return e !== todo;
+    }));
+
+  }
+
+
+  const [todos, setTodos] = useState([
+    {
+      sno: 1,
+      title: "Go to the market",
+      desc: "You need to go to the market to get the job done "
+    },
+    {
+      sno: 2,
+      title: "Complete the Javascript Course",
+      desc: "Complete the JS Course till the end of the month"
+    },
+    {
+      sno: 3,
+      title: "Go to the gym",
+      desc: "Go the GYM Every day"
+    },
+  ]);
+
+
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
-      <div className="container-fluid">
-        <a className="navbar-brand" href="#">Navbar</a>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Link</a>
-            </li>
-            <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-              </a>
-              <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="#">Action</a></li>
-                <li><a className="dropdown-item" href="#">Another action</a></li>
-                <li><hr className="dropdown-divider" /></li>
-                <li><a className="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link disabled" aria-disabled="true">Disabled</a>
-            </li>
-          </ul>
-          <form className="d-flex" role="search">
-            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-            <button className="btn btn-outline-success" type="submit">Search</button>
-          </form>
-        </div>
-      </div>
-    </nav>
+    <>
+      <Header title="My todos list" searchBar={true} />
+      <Todos todos={todos} onDelete={onDelete} />
+      <Footer />
+    </>
   );
 }
 
