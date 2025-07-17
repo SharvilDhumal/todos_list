@@ -2,9 +2,8 @@ import React from 'react'
 
 const Footer = () => {
   let footerStyle = {
-    width: "100%"
+    marginTop: "auto"
   }
-
 
   return (
     <footer className="bg-dark text-light py-3" style={footerStyle} >
