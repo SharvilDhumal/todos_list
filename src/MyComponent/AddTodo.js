@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 
+
 export const AddTodo = ({ addTodo }) => {
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
@@ -8,8 +9,11 @@ export const AddTodo = ({ addTodo }) => {
         e.preventDefault();
         if (!title || !desc) {
             alert("Title or Description cannot be blank");
+        } else {
+            addTodo(title, desc);
+            setTitle("");
+            setDesc("");
         }
-        addTodo(title, desc);
     }
 
     return (
